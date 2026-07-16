@@ -26,4 +26,12 @@ if(!empty($erreurs)){
     foreach($erreurs as $erreur){
         echo '<p>' . $erreur . '</p>';
     }
+} else{
+    require 'bdd.php';
+    $bdd = connexion();
+    $sqlQuery = 'INSERT INTO oeuvres (title, description, artist, image) VALUES (?,?,?,?)';
+    $statement = $bdd->prepare($sqlQuery);
+    $statement->execute([$titre, $description, $artiste, $image]);
+    header('Location: index.php');
+    exit;
 }
