@@ -10,9 +10,11 @@
     }
 
     $bdd = connexion();
-    $sqlQuery = 'SELECT * FROM oeuvres WHERE id = ?';
+    $sqlQuery = 'SELECT title, image, artist, description FROM oeuvres WHERE id = :id';
     $statement = $bdd->prepare($sqlQuery);
-    $statement->execute([$id]);
+    $statement->execute([
+        'id' => $id
+    ]);
     $oeuvre = $statement->fetch();
    
     if(!$oeuvre){
