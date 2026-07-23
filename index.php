@@ -4,7 +4,7 @@
 
     $bdd = connexion();
     
-    $sqlQuery = 'SELECT * FROM oeuvres';
+    $sqlQuery = 'SELECT id, title, image, artist FROM oeuvres';
     $statement = $bdd->prepare($sqlQuery);
     $statement->execute();
     $oeuvres = $statement->fetchAll();
